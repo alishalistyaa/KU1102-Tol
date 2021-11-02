@@ -1,0 +1,841 @@
+WindowManager:
+    MainMenu:
+    Identifikasi:
+    Peta:
+    MasukTol:
+    Jalan:
+    Bayar:
+    Struk:
+
+<MainMenu>:
+    name: "pertama"
+
+    FloatLayout:
+        size: root.width, root.height
+
+        Image:
+            source: "photos/mainmenu_scaled.png"
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
+
+        Button:
+            background_normal: 'photos/button_normal_scaled.png'
+            background_down: 'photos/button_pressed_scaled.png'
+            pos: (root.width/4, '20dp')
+            size_hint: .5, .5
+            text: 'START \n'
+            color: 0,0,0,1
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '64'
+            
+            on_release:
+                app.root.current = "kedua"
+                root.manager.transition.direction = "left"
+    
+        Image:
+            id: judul
+            source: "photos/E-toll_scaled.png"
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height 
+            
+
+        
+
+<Peta>:
+    name: "kedua"
+
+    FloatLayout:
+        size: root.width, root.height
+
+        Image:
+            source: "photos/map_scaled.png"
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
+        
+        Image:
+            source: "photos/alternative_dialogue.png"
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width,root.height
+        
+        Label:
+            text: 'Silahkan pilih gerbang\ntol asal!'
+
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.34, "y":0.567}
+            font_name: 'fonts/emulogic.ttf'
+
+        HoverButton:
+            id: Padalarang
+            asal: 'Padalarang'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.14, "y":0.53}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_padalarang()
+
+        HoverButton:
+            id: Baros
+            asal: 'Baros'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.23, "y":0.367}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_baros()
+
+        HoverButton:
+            id: Pasteur
+            asal: 'Pasteur'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.40, "y":0.43}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_pasteur()
+
+        HoverButton:
+            id: Pasir_Koja
+            asal: 'Pasir Koja'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.35, "y":0.23}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_pasirkoja()
+
+        HoverButton:
+            id: Kopo
+            asal: 'Kopo'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.46, "y":0.16}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_kopo()
+
+        HoverButton:
+            id: Moh_Toha
+            asal: 'Moh. Toha'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.56, "y":0.03}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_mohtoha()
+
+        HoverButton:
+            id: Buah_Batu
+            asal: 'Buah Batu'
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.69, "y":0.10}
+            on_release:
+                app.root.current = "ketiga"
+                root.manager.transition.direction = "left"
+                root.pilih_buahbatu()
+
+        HoverButton:
+            id: Cileunyi
+            asal: ' '
+            background_normal: 'photos/pin_scaled.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.87, "y":0.16}
+
+        HoverButton:
+            id: ITB
+            asal: 'ITB'
+            background_normal: 'photos/PINITB.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.1,0.12
+            pos_hint:{"x":0.51, "y":0.26}
+            on_release:
+                app.root.current = "secret"
+                root.manager.transition.direction = "left"
+            
+
+
+<Identifikasi>:
+    name: "ketiga"
+    FloatLayout:
+
+        BoxLayout:
+            orientation: "horizontal"
+            size: root.width, root.height
+
+            FloatLayout:
+                Image:
+                    source: "photos/BG_Half.png"
+                    allow_stretch: True
+                    keep_ratio: False
+                    size: root.width, root.height
+                # Image:
+                    # Ini harusnya gif
+                    # source: "photos/PINITB.png"
+
+            AnchorLayout:
+                # Background
+                Image:
+                    source: "photos/BG_Flat.png"
+                    allow_stretch: True
+                    keep_ratio: False
+                
+                # Fase Tiga
+                FloatLayout:
+                #:set x_nokiri 0.17
+                #:set y_noatas 0.38
+                #:set x_nokanan 0.57
+                #:set y_nobawah 0.14
+
+                #: set x_nosize 0.32
+                #: set y_nosize 0.2
+
+
+                    Button: 
+                        disabled: not root.milihgandar_enabled
+                        opacity: 1 if root.fasetiga else 0
+                        background_normal: "photos/button1up.png"
+                        background_down: "photos/buttonnodown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.31, 0.19
+                        pos_hint:{"x":x_nokiri, "y":0.45}
+                        on_press:
+                            opacity:0.5
+                        on_release:
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golongansatu()
+                    
+                    Button: 
+                        disabled: not root.milihgandar_enabled
+                        opacity: 1 if root.fasetiga else 0
+                        background_normal: "photos/button2up.png"
+                        background_down: "photos/buttonnodown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: x_nosize, y_nosize
+                        pos_hint:{"x":x_nokanan, "y":y_noatas}
+                        on_press:
+                            opacity:0.5
+                        on_release:
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golongandua()
+
+                    Button: 
+                        disabled: not root.milihgandar_enabled
+                        opacity: 1 if root.fasetiga else 0
+                        background_normal: "photos/button3up.png"
+                        background_down: "photos/buttonnodown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.32, 0.2
+                        pos_hint:{"x":x_nokiri, "y":0.22}
+                        on_press:
+                            opacity:0.5
+                        on_release:
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golongantiga()
+
+                    Button: 
+                        disabled: not root.milihgandar_enabled
+                        opacity: 1 if root.fasetiga else 0
+                        background_normal: "photos/button4up.png"
+                        background_down: "photos/buttonnodown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: x_nosize, y_nosize
+                        pos_hint:{"x":x_nokanan, "y":y_nobawah}
+                        on_press:
+                            opacity:0.5
+                        on_release:
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golonganempat()
+
+                    Button: 
+                        disabled: not root.milihgandar_enabled
+                        opacity: 1 if root.fasetiga else 0
+                        background_normal: "photos/button5up.png"
+                        background_down: "photos/buttonnodown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: x_nosize, y_nosize
+                        pos_hint:{"x":x_nokiri, "y":0.001}
+                        on_press:
+                            opacity:0.5
+                        on_release:
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golonganlima()
+                # ----------------------------------------------
+
+                # Fase Dua
+                FloatLayout:
+                    Button:
+                        disabled: not root.milihjenis_enabled
+                        opacity: 1 if root.fasedua else 0
+                        background_normal: "photos/bisabu.png"
+                        background_down: "photos/bisabudown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.4,0.27
+                        pos_hint:{"x":0.28, "y":0.33}
+                        on_release: 
+                            app.root.current = "masuktol"
+                            root.manager.transition.direction = "left"
+                            root.golongansatu()
+
+                    Button:
+                        disabled: not root.milihjenis_enabled
+                        opacity: 1 if root.fasedua else 0
+
+                        background_normal: "photos/trukabu.png"
+                        background_down: "photos/trukabudown.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.4,0.27
+                        pos_hint:{"x":0.28, "y":0.03}
+                        on_release: root.on_truk_duaselesai()
+                
+                # Fase Satu
+                FloatLayout:
+                    Image:
+                        opacity: 1 if root.fasesatu else 0
+
+                        source: "photos/screen.png"
+                        allow_stretch: True
+                        keep_ratio: False
+                        size_hint: 0.7,0.14
+                        pos_hint:{"x":0.14, "y":0.47}
+
+                    Label:
+                        opacity: 1 if root.fasesatu else 0
+
+                        text: root.tinggikendaraan
+                        pos_hint: {'x': 0, 'y':0.05}
+                        color: 0,0,0,1
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '64'
+
+                    Button:
+                        disabled: root.milihjenis_enabled
+                        opacity: 1 if root.fasesatu else 0
+
+                        background_normal: "photos/buttondown_scaled.png"
+                        background_down: "photos/buttonuppressed_scaled.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.15,0.1
+                        pos_hint:{"x":0.12, "y":0.34}
+                        on_press: root.on_tambahtinggi()
+                    
+                    Button:
+                        disabled: root.milihjenis_enabled
+                        opacity: 1 if root.fasesatu else 0
+
+                        background_normal: "photos/buttonup_scaled.png"
+                        background_down: "photos/buttondownpressed_scaled.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.15,0.1
+                        pos_hint:{"x":0.28, "y":0.34}
+                        on_press: root.on_kurangitinggi()
+                    
+                    Button:
+                        disabled: root.milihjenis_enabled
+                        opacity: 1 if root.fasesatu else 0
+
+                        background_normal: "photos/buttonHDD.png"
+                        background_down: "photos/buttonHDDpressed.png"
+                        allow_strect: True
+                        keep_ratio: False
+                        size_hint: 0.41,0.14
+                        pos_hint:{"x":0.445, "y":0.32}
+                        color: 0,0,0,1
+                        text: "OK\n"
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '32'
+                        on_release: 
+                            if root.count > 2.1: root.on_satuselesai()
+                            if root.count <= 2.1: app.root.current = "masuktol"  
+                            if root.count <= 2.1: root.golongansatu()
+
+        
+        
+        Image:
+            source: "photos/dialougegandar.png" if root.fasetiga else "photos/dialougebox.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.7,0.3
+            pos_hint: {'x': 0.27, 'y': 0.64}
+
+        Label:
+            text: root.instruksiID
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.34, "y":0.547}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '43'
+                
+
+<MasukTol>:
+    name: "masuktol"
+    FloatLayout:
+        Image:
+            source:'photos/BG_Bayar.png'
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
+        Label:
+            text: root.instruksimasuk
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.50, "y":0.647}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '22'
+        ScanKartu:
+            id: ScanKartu
+            background_normal: 'photos/tapkartu.png'
+            background_down:'photos/kartu_clicked.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.3,0.35
+            pos_hint:{"x":0.11, "y":0.03}
+            on_release:
+                root.masukkansaldo()
+        Label:
+            id: Saldo
+            text: root.textsaldo
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.47, "y":0.43}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '58'
+
+        # Nomor 1
+        Button:
+            background_normal: "photos/atm_1.png"
+            background_down: "photos/atm_down_1.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.atas_atm}
+            on_release:
+                root.pencetsatu()
+                root.updatelabelsaldo()
+        # Nomor 2
+        Button:
+            background_normal: "photos/atm_2.png"
+            background_down: "photos/atm_down_2.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.atas_atm}
+            on_release:
+                root.pencetdua()
+                root.updatelabelsaldo()
+        # Nomor 3
+        Button:
+            background_normal: "photos/atm_3.png"
+            background_down: "photos/atm_down_3.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.atas_atm}
+            on_release:
+                root.pencettiga()
+                root.updatelabelsaldo()
+        # Nomor 4
+        Button:
+            background_normal: "photos/atm_4.png"
+            background_down: "photos/atm_down_4.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetempat()
+                root.updatelabelsaldo()
+        # Nomor 5
+        Button:
+            background_normal: "photos/atm_5.png"
+            background_down: "photos/atm_down_5.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetlima()
+                root.updatelabelsaldo()
+        # Nomor 6
+        Button:
+            background_normal: "photos/atm_6.png"
+            background_down: "photos/atm_down_6.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetenam()
+                root.updatelabelsaldo()
+        # Nomor 7
+        Button:
+            background_normal: "photos/atm_7.png"
+            background_down: "photos/atm_down_7.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencettujuh()
+                root.updatelabelsaldo()
+        # Nomor 8
+        Button:
+            background_normal: "photos/atm_8.png"
+            background_down: "photos/atm_down_8.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencetdelapan()
+                root.updatelabelsaldo()
+        # Nomor 9
+        Button:
+            background_normal: "photos/atm_4.png"
+            background_down: "photos/atm_down_4.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencetsembilan()
+                root.updatelabelsaldo()
+
+        # Nomor 0
+        Button:
+            background_normal: "photos/atm_0.png"
+            background_down: "photos/atm_down_0.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":0.00}
+            on_release:
+                root.pencetnol()
+                root.updatelabelsaldo()
+
+        Button:
+            disabled: not root.bisanext
+            background_disabled_normal: "photos/buttonHDD.png"
+            background_normal: "photos/buttonHDD.png"
+            background_down: "photos/buttonHDDpressed.png"
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.20,0.13
+            pos_hint:{"x":0.65, "y":0.00}
+            color: 0,0,0,1
+            text: "OK!\n"
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '32'
+            on_release: 
+                app.root.current = "jalan"
+                root.manager.transition.direction = "left"
+
+<Jalan>:
+    name: "jalan"
+    FloatLayout:
+        Image:
+            source: "photos/BGGerak_siang.gif"
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
+
+        FloatLayout:
+            # Depan
+            Button:
+                disabled: not root.buttonyesnyala
+                opacity: 1 
+                background_normal:"photos/buttonHDD.png"
+                background_down:"photos/buttonHDDpressed.png"
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 0.21,0.11
+                pos_hint:{"x":0.73, "y":0.16}
+                color: 0,0,0,1
+                text: root.buttonyes_text
+                font_name: 'fonts/emulogic.ttf'
+                font_size: '23'
+                on_release:
+                    root.on_buttonyes()
+                    root.posisibuttonbayar_bawah()
+
+            # Belakang
+            Button:
+                disabled: not root.buttonnonyala
+                background_normal:"photos/buttonHDD.png"
+                background_down:"photos/buttonHDDpressed.png"
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 0.21,0.11
+                pos_hint:{"x":0.73, "y":0.03}
+                color: 0,0,0,1
+                text: root.buttonno_text
+                font_name: 'fonts/emulogic.ttf'
+                font_size: '23'
+                
+                on_release:
+                    root.on_buttonno()
+                    root.posisibuttonbayar_atas()
+            Image:
+                source: "photos/dialougebelok.png"
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: 0.61,0.23
+                pos_hint: {'x': 0.07, 'y': 0.03}
+            
+            # Bayar atas
+            #Bayar atas
+    Button:
+        disabled: not root.buttonbayarnyala
+        opacity: 1 if root.buttonbayarnyala else 0
+        background_normal:"photos/buttonHDD.png"
+        background_down:"photos/buttonHDDpressed.png"
+        allow_stretch: True
+        keep_ratio: False
+        size_hint: 0.21,0.11
+        pos_hint:{"x":0.73, "y":root.posisibutton}
+        color: 0,0,0,1
+        text: "OK!\n"
+        font_name: 'fonts/emulogic.ttf'
+        font_size: '23'
+        on_release:
+            app.root.current = "bayar"
+            root.manager.transition.direction = "left"
+            root.ayobayar()     
+
+    Label:
+        text: root.instruksibelok
+        color: (1,1,1,1)
+        size_hint: 0.4,0.2
+        pos_hint:{"x":0.19, "y":0.06}
+        font_name: 'fonts/emulogic.ttf'
+        font_size: '25'
+            
+
+
+
+
+<Bayar>:
+    name: "bayar"
+    FloatLayout:
+        Image:
+            source:'photos/BG_Bayar.png'
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
+        Label:
+            text: root.instruksikeluar
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.50, "y":0.647}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '22'
+        ScanKartu:
+            id: ScanKartu
+            background_normal: 'photos/tapkartu.png'
+            background_down:'photos/kartu_clicked.png'
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.3,0.35
+            pos_hint:{"x":0.11, "y":0.03}
+            on_release:
+                root.munculkantarif()
+                root.updatelabeltarif()
+
+        Label:
+            id: Tarif
+            text: root.texttarif
+            color: (0,0,0,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.02, "y":0.63}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '58'
+
+        Label:
+            id: Saldo
+            text: root.saldotambahan
+            color: (1,1,1,1)
+            size_hint: 0.5,0.5
+            pos_hint:{"x":0.47, "y":0.43}
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '58'
+
+        # Nomor 1
+        Button:
+            background_normal: "photos/atm_1.png"
+            background_down: "photos/atm_down_1.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.atas_atm}
+            on_release:
+                root.pencetsatu()
+                root.updatelabelsaldo()
+        # Nomor 2
+        Button:
+            background_normal: "photos/atm_2.png"
+            background_down: "photos/atm_down_2.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.atas_atm}
+            on_release:
+                root.pencetdua()
+                root.updatelabelsaldo()
+        # Nomor 3
+        Button:
+            background_normal: "photos/atm_3.png"
+            background_down: "photos/atm_down_3.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.atas_atm}
+            on_release:
+                root.pencettiga()
+                root.updatelabelsaldo()
+        # Nomor 4
+        Button:
+            background_normal: "photos/atm_4.png"
+            background_down: "photos/atm_down_4.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetempat()
+                root.updatelabelsaldo()
+        # Nomor 5
+        Button:
+            background_normal: "photos/atm_5.png"
+            background_down: "photos/atm_down_5.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetlima()
+                root.updatelabelsaldo()
+        # Nomor 6
+        Button:
+            background_normal: "photos/atm_6.png"
+            background_down: "photos/atm_down_6.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.tengahy_atm}
+            on_release:
+                root.pencetenam()
+                root.updatelabelsaldo()
+        # Nomor 7
+        Button:
+            background_normal: "photos/atm_7.png"
+            background_down: "photos/atm_down_7.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencettujuh()
+                root.updatelabelsaldo()
+        # Nomor 8
+        Button:
+            background_normal: "photos/atm_8.png"
+            background_down: "photos/atm_down_8.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.tengahx_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencetdelapan()
+                root.updatelabelsaldo()
+        # Nomor 9
+        Button:
+            background_normal: "photos/atm_4.png"
+            background_down: "photos/atm_down_4.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kanan_atm, "y":root.bawah_atm}
+            on_release:
+                root.pencetsembilan()
+                root.updatelabelsaldo()
+
+        # Nomor 0
+        Button:
+            background_normal: "photos/atm_0.png"
+            background_down: "photos/atm_down_0.png"
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.11, 0.141
+            pos_hint:{"x":root.kiri_atm, "y":0.00}
+            on_release:
+                root.pencetnol()
+                root.updatelabelsaldo()
+
+        Button:
+            disabled: not root.sudahtambahsaldo
+            background_disabled_normal: "photos/buttonHDD.png"
+            background_normal: "photos/buttonHDD.png"
+            background_down: "photos/buttonHDDpressed.png"
+            allow_strect: True
+            keep_ratio: False
+            size_hint: 0.20,0.13
+            pos_hint:{"x":0.65, "y":0.00}
+            color: 0,0,0,1
+            text: "OK!\n"
+            font_name: 'fonts/emulogic.ttf'
+            font_size: '32'
+            on_release: 
+                root.udahinputsaldo()
+        
+        #Button:
+            #disabled: not root.strukkeluar
+            #opacity: 1 if root.strukkeluar else 0
+
+        
+
+
+
+<Struk>:
+    name: "keenam"
