@@ -4,6 +4,8 @@
 # pip3 install kivy (buat mac)
 # (di terminal)
 
+import datetime as x
+import os
 
 from typing import AsyncIterable, Sized
 from kivy.app import App
@@ -53,7 +55,6 @@ class Peta(Screen):
         asalupdated()
         return nyimpen.asal
 
-
 class HoverButton(Button):
 
     def __init__(self,**kwargs):
@@ -99,19 +100,24 @@ class Identifikasi(Screen):
 
     def golongansatu(self):
         nyimpen.golongan = 1
-        return nyimpen.golongan
+        nyimpen.fotokendaraan = "photos/gol1_mobil.gif"
+        return nyimpen.golongan, nyimpen.fotokendaraan
     def golongandua(self):
         nyimpen.golongan = 2
-        return nyimpen.golongan
+        nyimpen.fotokendaraan = "photos/gol2.gif"
+        return nyimpen.golongan, nyimpen.fotokendaraan
     def golongantiga(self):
         nyimpen.golongan = 3
-        return nyimpen.golongan
+        nyimpen.fotokendaraan = "photos/gol3.gif"
+        return nyimpen.golongan, nyimpen.fotokendaraan
     def golonganempat(self):
         nyimpen.golongan = 4
-        return nyimpen.golongan
+        nyimpen.fotokendaraan = "photos/gol4.gif"
+        return nyimpen.golongan, nyimpen.fotokendaraan
     def golonganlima(self):
         nyimpen.golongan = 5
-        return nyimpen.golongan
+        nyimpen.fotokendaraan = "photos/gol5.gif"
+        return nyimpen.golongan, nyimpen.fotokendaraan
     
     
 
@@ -243,7 +249,6 @@ class MasukTol(Screen):
             self.n +=1
             return nyimpen.saldoawal, self.n
 
-
 class ScanKartu(Button):
     def __init__(self,**kwargs):
         super(ScanKartu,self).__init__(**kwargs)
@@ -285,36 +290,41 @@ class Jalan(Screen):
     instruksibelok = StringProperty( f"Terdapat persimpangan \nke arah kanan dan kiri. \n\n Mau ke mana?")
     buttonyes_text = StringProperty(f"Kanan")
     buttonno_text = StringProperty(f"Kiri")
+    fotookendaraan = nyimpen.fotokendaraan
+
 
     def textmuncul(self):
         print("textmuncul")
         self.instruksibelok = f"Terdapat persimpangan ke arah \n {nyimpen.gerbang[nyimpen.asal-2]} dan {nyimpen.gerbang[nyimpen.asal]}. \n\n Mau ke mana?"
         self.buttonyes_text = f"{nyimpen.gerbang[nyimpen.asal-2]}"
         self.buttonno_text = f"{nyimpen.gerbang[nyimpen.asal]}"
+        self.fotookendaraan = nyimpen.fotokendaraan
         print("textmuncullagi")
-        return self.instruksibelok, self.buttonyes_text, self.buttonno_text
+        return self.instruksibelok, self.buttonyes_text, self.buttonno_text, self.fotookendaraan
 
     def on_buttonyes(self):
         self.instruksibelok = f"Dalam 500 m, mendekati \n gerbang tol {self.gerbang[nyimpen.tujuan-2]} \n\n Apa mau belok?"
         self.buttonbayarnyala = True
         self.buttonnonyala = False
         self.buttonyes_text = "Tidak"
+        self.fotookendaraan = nyimpen.fotokendaraan
         if nyimpen.tujuan > 2:
             nyimpen.tujuan -=1
         print(nyimpen.tujuan)
-        return nyimpen.tujuan
+        return nyimpen.tujuan, self.fotookendaraan
 
     def on_buttonno(self):
         self.instruksibelok = f"Dalam 500 m, mendekati \n gerbang tol {self.gerbang[nyimpen.tujuan]} \n\n Apa mau belok?"
         self.buttonno_text = "Tidak"
         self.buttonbayarnyala = True
         self.buttonyesnyala = False
+        self.fotookendaraan = nyimpen.fotokendaraan
         print(nyimpen.tujuan)
         if nyimpen.tujuan <7:
             nyimpen.tujuan +=1
         elif nyimpen.tujuan ==7:
             pass
-        return nyimpen.tujuan
+        return nyimpen.tujuan, self.fotookendaraan
 
     def posisibuttonbayar_atas(self):
         self.posisibutton = 0.16
@@ -408,7 +418,6 @@ def pembayaran():
     print(nyimpen.tarif)
     return nyimpen.tarif
 
-
 class Bayar(Screen):
     kiri_atm = 0.54
     tengahx_atm = 0.66
@@ -421,7 +430,7 @@ class Bayar(Screen):
     saldotambahan = StringProperty()
     sudahtambahsaldo = BooleanProperty(False)
     texttarif = StringProperty()
-    
+    strukkeluar = BooleanProperty(False)
 
     def __init__(self, *args, **kwargs):
         super(Bayar,self).__init__(*args, **kwargs)
@@ -522,8 +531,59 @@ class Bayar(Screen):
             self.m +=1
             return nyimpen.saldotambah, self.m
 
+
+class StrukEmas(Button):
+    def __init__(self,**kwargs):
+        super(StrukEmas,self).__init__(**kwargs)
+        self.size_hint = (1,None)
+        self.height = 50
+        Window.bind(mouse_pos=self.on_mouse_pos)
+
+    def on_mouse_pos(self, *args):
+        if not self.get_root_window():
+            return
+        pos = args[1]
+        if self.collide_point(*pos):
+            Clock.schedule_once(self.mouse_enter_css, 0)
+        else:
+            Clock.schedule_once(self.mouse_leave_css, 0)
+    def mouse_leave_css(self, *args):
+        self.background_normal ='photos/tiket1.png'
+        self.size_hint= 0.3,0.35
+        Window.set_system_cursor('arrow')
+
+    def mouse_enter_css(self, *args):
+        self.size_hint=0.3,0.35
+        self.background_normal='photos/tiket2.png'
+        self.background_down='photos/tiket1.png'
+        self.anim_loop = 5
+        self.font_name = 'fonts/emulogic.ttf'
+        self.color = 0,0,0,1
+        Window.set_system_cursor('hand')
+
 class Struk(Screen):
-    pass
+    #tulisanstruk = f"\n======================== \nJASAMARGI\n{nyimpen.gerbang[nyimpen.tujuan-1]}\nAsal : {nyimpen.gerbang[nyimpen.asal-1]}\nGOL-{str(nyimpen.golongan[0])} Tarif : Rp {str(nyimpen.tarif)}\nSisa Saldo : Rp {str(nyimpen.saldo)}\nTerima kasih!\n========================\n"
+    #tulisanstruk = "test"
+    Golongan = StringProperty("p")
+    Asal = StringProperty("p")
+    Tujuan = StringProperty("p")
+    Tarif = StringProperty("p")
+    Sisasaldo = StringProperty("p")
+    Thanks = StringProperty("p")
+    strukshow = BooleanProperty(False)
+    continuegak = BooleanProperty(True)
+
+    def updatestruk(self):
+        self.strukshow = True
+        self.continuegak = False
+        self.Golongan = f"Golongan {nyimpen.golongan}"
+        self.Asal = f"Asal : {nyimpen.gerbang[nyimpen.asal-1]}"
+        self.Tujuan = f"Tujuan : {nyimpen.gerbang[nyimpen.tujuan-1]}"
+        self.Tarif = f"Tujuan : {nyimpen.tarif}"
+        self.Sisasaldo = f"Sisa Saldo : {nyimpen.saldo}"
+        self.Thanks = "Terima kasih, semoga selamat \n di perjalanan."
+        return self.Golongan, self.Asal, self.Tujuan, self.Tarif, self.Sisasaldo, self.Thanks
+        
 
 class WindowManager(ScreenManager):
     pass

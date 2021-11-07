@@ -217,24 +217,6 @@ WindowManager:
 
                 #: set x_nosize 0.32
                 #: set y_nosize 0.2
-
-
-                    Button: 
-                        disabled: not root.milihgandar_enabled
-                        opacity: 1 if root.fasetiga else 0
-                        background_normal: "photos/button1up.png"
-                        background_down: "photos/buttonnodown.png"
-                        allow_strect: True
-                        keep_ratio: False
-                        size_hint: 0.31, 0.19
-                        pos_hint:{"x":x_nokiri, "y":0.45}
-                        on_press:
-                            opacity:0.5
-                        on_release:
-                            app.root.current = "masuktol"
-                            root.manager.transition.direction = "left"
-                            root.golongansatu()
-                    
                     Button: 
                         disabled: not root.milihgandar_enabled
                         opacity: 1 if root.fasetiga else 0
@@ -243,7 +225,7 @@ WindowManager:
                         allow_strect: True
                         keep_ratio: False
                         size_hint: x_nosize, y_nosize
-                        pos_hint:{"x":x_nokanan, "y":y_noatas}
+                        pos_hint:{"x":x_nokiri, "y":y_noatas}
                         on_press:
                             opacity:0.5
                         on_release:
@@ -259,7 +241,7 @@ WindowManager:
                         allow_strect: True
                         keep_ratio: False
                         size_hint: 0.32, 0.2
-                        pos_hint:{"x":x_nokiri, "y":0.22}
+                        pos_hint:{"x":x_nokanan, "y":y_noatas}
                         on_press:
                             opacity:0.5
                         on_release:
@@ -275,7 +257,7 @@ WindowManager:
                         allow_strect: True
                         keep_ratio: False
                         size_hint: x_nosize, y_nosize
-                        pos_hint:{"x":x_nokanan, "y":y_nobawah}
+                        pos_hint:{"x":x_nokiri, "y":y_nobawah}
                         on_press:
                             opacity:0.5
                         on_release:
@@ -291,7 +273,7 @@ WindowManager:
                         allow_strect: True
                         keep_ratio: False
                         size_hint: x_nosize, y_nosize
-                        pos_hint:{"x":x_nokiri, "y":0.001}
+                        pos_hint:{"x":x_nokanan, "y":y_nobawah}
                         on_press:
                             opacity:0.5
                         on_release:
@@ -391,8 +373,6 @@ WindowManager:
                             if root.count <= 2.1: app.root.current = "masuktol"  
                             if root.count <= 2.1: root.golongansatu()
 
-        
-        
         Image:
             source: "photos/dialougegandar.png" if root.fasetiga else "photos/dialougebox.png"
             allow_stretch: True
@@ -580,6 +560,11 @@ WindowManager:
             allow_stretch: True
             keep_ratio: False
             size: root.width, root.height
+        Image:
+            source: root.fotookendaraan
+            allow_stretch: True
+            keep_ratio: False
+            size: root.width, root.height
 
         FloatLayout:
             # Depan
@@ -588,8 +573,6 @@ WindowManager:
                 opacity: 1 
                 background_normal:"photos/buttonHDD.png"
                 background_down:"photos/buttonHDDpressed.png"
-                allow_stretch: True
-                keep_ratio: False
                 size_hint: 0.21,0.11
                 pos_hint:{"x":0.73, "y":0.16}
                 color: 0,0,0,1
@@ -605,8 +588,6 @@ WindowManager:
                 disabled: not root.buttonnonyala
                 background_normal:"photos/buttonHDD.png"
                 background_down:"photos/buttonHDDpressed.png"
-                allow_stretch: True
-                keep_ratio: False
                 size_hint: 0.21,0.11
                 pos_hint:{"x":0.73, "y":0.03}
                 color: 0,0,0,1
@@ -619,8 +600,6 @@ WindowManager:
                     root.posisibuttonbayar_atas()
             Image:
                 source: "photos/dialougebelok.png"
-                allow_stretch: True
-                keep_ratio: False
                 size_hint: 0.61,0.23
                 pos_hint: {'x': 0.07, 'y': 0.03}
             
@@ -791,8 +770,8 @@ WindowManager:
                 root.updatelabelsaldo()
         # Nomor 9
         Button:
-            background_normal: "photos/atm_4.png"
-            background_down: "photos/atm_down_4.png"
+            background_normal: "photos/atm_9.png"
+            background_down: "photos/atm_down_9.png"
             allow_stretch: True
             keep_ratio: False
             size_hint: 0.11, 0.141
@@ -829,13 +808,108 @@ WindowManager:
             on_release: 
                 root.udahinputsaldo()
         
-        #Button:
-            #disabled: not root.strukkeluar
-            #opacity: 1 if root.strukkeluar else 0
-
-        
-
-
+        StrukEmas:
+            id: Struk
+            opacity: 1 if root.strukkeluar else 0
+            background_normal: 'photos/tiket1.png'
+            background_down:'photos/tiket2.png'
+            allow_stretch: True
+            keep_ratio: False
+            size_hint: 0.10,0.15
+            pos_hint:{"x":0.10, "y":0.32}
+            on_release:
+                app.root.current = "keenam"
+                root.manager.transition.direction = "left"
+                
 
 <Struk>:
     name: "keenam"
+    FloatLayout:
+
+        BoxLayout:
+            orientation: "horizontal"
+            size: root.width, root.height
+
+            FloatLayout:
+                Image:
+                    source: "photos/BGGerak_siang.gif"
+                    allow_stretch: True
+                    keep_ratio: False
+                    size: root.width, root.height
+
+                Image:
+                    opacity: 1 if root.strukshow else 0
+                    source: "photos/theend.png"
+                    allow_stretch: False
+                    keep_ratio: False
+                    size: root.width, root.height
+                    pos_hint:{"x":0.0, "y":-0.300}
+
+            AnchorLayout:
+                Image:
+                    source: "photos/BG_Flat.png"
+                    allow_stretch: True
+                    keep_ratio: False
+                FloatLayout:
+                    Button:
+                        opacity: 1 if root.continuegak else 0
+                        background_normal: 'photos/button_normal_scaled.png'
+                        background_down: 'photos/button_pressed_scaled.png'
+                        size_hint: .7, .3
+                        text: 'Continue \n'
+                        color: 0,0,0,1
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '32'
+                        on_release: 
+                            root.updatestruk() 
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Golongan
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.600}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Asal
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.500}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Tujuan
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.450}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Tarif
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.400}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Sisasaldo
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.350}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    Label:
+                        opacity: 1 if root.strukshow else 0
+                        text: root.Thanks
+                        color: (1,1,1,1)
+                        size_hint: 0.5,0.5
+                        pos_hint:{"x":0.22, "y":0.200}
+                        font_name: 'fonts/emulogic.ttf'
+                        font_size: '23'
+                    
+
+                
